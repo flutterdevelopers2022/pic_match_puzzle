@@ -8,14 +8,16 @@ void main()
   runApp(MaterialApp(home: Home(),));
 }
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+
+  static SharedPreferences? prefs;
 
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  SharedPreferences? prefs;
+
+  int cur_level=0;
   @override
   void initState() {
     // TODO: implement initState
@@ -24,13 +26,17 @@ class _HomeState extends State<Home> {
   }
   get()
   async {
-    prefs = await SharedPreferences.getInstance();
+    Home.prefs = await SharedPreferences.getInstance();
+    setState(() {
+      cur_level=Home.prefs!.getInt("levelNo") ?? 0;
+    });
+
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: Center(child: ElevatedButton(onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return Level_page();
+            return Level_page(cur_level);
           },));
     },
     child: Text("Play")),),);
