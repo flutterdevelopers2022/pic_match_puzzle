@@ -56,6 +56,7 @@ class _Level_pageState extends State<Level_page> {
                 child: Column(
                   children: [
                     Container(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
                         "Match ",
                         style: TextStyle(fontSize: 30),
@@ -79,7 +80,7 @@ class _Level_pageState extends State<Level_page> {
                                 },
                               ));
                             },
-                            child: Container(
+                            child: UnconstrainedBox(child: Container(
                               margin: EdgeInsets.symmetric(vertical: 20),
                               child: Center(
                                 child: Text(
@@ -87,9 +88,11 @@ class _Level_pageState extends State<Level_page> {
                                   style: TextStyle(color: Colors.white),
                                 ),
                               ),
-                              width: 150,
+                              width: 180,
                               height: 50,
-                            ),
+                              color: Color(0xff009688),
+
+                            )),
                           );
 
 
